@@ -2,8 +2,9 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import img from '../assets/icons8-question-mark-64.png'
 import { GoStack } from "react-icons/go";
-import { IoIosCreate } from "react-icons/io";
-import { IoStatsChartOutline } from "react-icons/io5";import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { IoLogOutOutline } from "react-icons/io5";
+import { IoStatsChartOutline } from "react-icons/io5";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { GiUbisoftSun } from "react-icons/gi";
 
 const Dashboard = () => {
@@ -11,7 +12,7 @@ const Dashboard = () => {
         <div>
             <div className="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content flex flex-col items-center justify-center">
+  <div className="drawer-content  ">
     <Outlet></Outlet>
     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open menu</label>
   
@@ -28,9 +29,6 @@ const Dashboard = () => {
     <span className='  hover:bg-[#EFF8FF] border-s-4 border-[#EFF8FF] hover:border-s-4  hover:border-[#1570EF] p-3 '>
     <Link to={'/'} className='flex items-center'> <GoStack /> <span className='px-2'>Products</span></Link>
     </span>
-    <span className=' hover:bg-[#EFF8FF] border-s-4 hover:border-s-4 border-[#EFF8FF] hover:border-[#1570EF] p-3 '>
-    <Link to={'/create'} className='flex items-center'> <IoIosCreate /><span className='px-2'>Add Product</span></Link>
-    </span>
     <span className='  hover:bg-[#EFF8FF] border-s-4 hover:border-s-4 border-[#EFF8FF] hover:border-[#0059CF] p-3 '>
     <Link to={'/'} className='flex items-center'> <IoStatsChartOutline /> <span className='px-2'>Analytics</span></Link>
     </span>
@@ -40,7 +38,9 @@ const Dashboard = () => {
     <span className=' hover:bg-[#EFF8FF] border-s-4 hover:border-s-4 border-[#EFF8FF] hover:border-[#1570EF] p-3  '>
     <Link to={'/'} className='flex items-center'> <RiMoneyDollarCircleFill /> <span className='px-2'>Products</span></Link>
     </span>
-   
+    <span className=' hover:bg-[#EFF8FF] border-s-4 hover:border-s-4 border-[#EFF8FF] hover:border-[#1570EF] p-3 '>
+    <Link to={'/'} className='flex items-center'> <IoLogOutOutline /><span className='px-2'>Log out</span></Link>
+    </span>
    
     </div>
 
