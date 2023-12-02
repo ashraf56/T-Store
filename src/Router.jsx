@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../Layout/Dashboard";
-import Product from "../Component/Product";
-import CreateProduct from "../Component/CreateProduct";
+import Dashboard from "./Layout/Dashboard";
+import Product from "./Component/Product";
+import CreateProduct from "./Component/CreateProduct";
 
 const router = createBrowserRouter([
     {
@@ -14,10 +14,11 @@ const router = createBrowserRouter([
         },
         {
             path:'/create',
-            element:<CreateProduct/>
+            element:<CreateProduct></CreateProduct>
         },
       ]
     },
   ]);
+  
 
-  export default router;
+  export default router
