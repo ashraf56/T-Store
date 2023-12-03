@@ -31,6 +31,21 @@ let [product,setProduct]=useState(null)
           modal.close();
         }
       };
+
+const deletData=(id)=>{
+    fetch(`https://dummyjson.com/products/${id}`, {
+  method: 'DELETE',
+})
+.then(res => res.json())
+.then(data =>{
+    alert('data deltetd')
+    handleCloseModal()
+    refetch()
+}
+    
+);
+}
+
     console.log(data);
     return (
         <div>
@@ -83,7 +98,7 @@ let [product,setProduct]=useState(null)
     <p className="py-4">Are you sure you want to delete "<span>{product.title}</span>"  from your lists?</p>
     <div className='text-center '>
 <button className='btn btn-outline text-red-400  mx-3 px-14' onClick={handleCloseModal}>Close</button>
-<button className='btn btn-error text-white  px-14 '>Delete</button>
+<button className='btn btn-error text-white  px-14 ' onClick={()=>deletData(product.id)} >Delete</button>
     </div>
   </div>
 </dialog>):   
