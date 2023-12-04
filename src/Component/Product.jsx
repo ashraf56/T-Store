@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Topbar from './Topbar';
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import Pagination from './Pagination';
 
 const Product = () => {
     const {data, refetch } = useQuery(
         ['products'],
          async() => { 
-          const res = await axios.get('https://public-server.vercel.app/product')
+          const res = await axios.get('https://tstore.onrender.com/product')
           
           return  res.data;
       }
@@ -33,7 +34,7 @@ let [allproduct,setAllroduct]=useState(null)
       };
 
 const deletData=(id)=>{
-  fetch(`https://public-server.vercel.app/product/${id}`,{
+  fetch(`https://tstore.onrender.com/product/${id}`,{
     method:"DELETE"
 })
     .then(res=>res.json())
@@ -50,11 +51,17 @@ const deletData=(id)=>{
 
     console.log(data);
     return (
-        <div>
+        <div >
             <Topbar></Topbar>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto px-5 py-5'>
           {
-         data?.length === 0 ? 'loading..'  :( data?.map(p=> (
+         data?.length === 0 ? (
+          <div className="col-span-3 flex justify-center items-center h-full">
+          <div className="w-max">
+            <span className="loading loading-dots loading-lg"></span>
+          </div>
+        </div>
+         ) :( data?.map(p=> (
                 <div key={p._id}>
                     <div className="card card-compact max-w-full lg:max-w-lg h-full bg-base-100 shadow-xl">
   <figure><img src={p?.image} alt="Shoes" className='h-[214px]' /></figure>
@@ -90,7 +97,9 @@ const deletData=(id)=>{
            }
 
           </div>
-
+   {    data?.length &&   <div className="  w-full justify-center pb-16">
+<Pagination></Pagination>
+</div>}
    {/* modal      */}
 {allproduct ? (<dialog id="my_modal_1" className="modal  bg-[#34405454] backdrop-blur-lg">
   <div className="modal-box">
@@ -119,6 +128,7 @@ const deletData=(id)=>{
   </div>
 </dialog>
 }
+
         </div>
     );
 };

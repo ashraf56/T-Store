@@ -19,7 +19,7 @@ const PostForm = () => {
         
        
     
-        fetch('https://public-server.vercel.app/product', {
+        fetch('https://tstore.onrender.com/product', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(
