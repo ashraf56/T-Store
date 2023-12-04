@@ -7,14 +7,14 @@ const Product = () => {
     const {data, refetch } = useQuery(
         ['products'],
          async() => { 
-          const res = await axios.get('https://dummyjson.com/products')
+          const res = await axios.get('http://localhost:4000/product')
           
-          return  res.data.products;
+          return  res.data;
       }
     )
-let [product,setProduct]=useState(null)
+let [allproduct,setAllroduct]=useState(null)
     const openModal = (p) => {
-        setProduct(p)
+      setAllroduct(p)
         const modal = document.getElementById('my_modal_1');
       if (!modal) {
        return 
@@ -33,17 +33,19 @@ let [product,setProduct]=useState(null)
       };
 
 const deletData=(id)=>{
-    fetch(`https://dummyjson.com/products/${id}`, {
-  method: 'DELETE',
+  fetch(`http://localhost:4000/product/${id}`,{
+    method:"DELETE"
 })
-.then(res => res.json())
-.then(data =>{
-    alert('data deltetd')
-    handleCloseModal()
-    refetch()
-}
+    .then(res=>res.json())
+    .then(json=>{
+      if (json.deletedCount>0) {
+        console.log(json);
+        handleCloseModal()
+        refetch()
+      }
+    })
     
-);
+
 }
 
     console.log(data);
@@ -53,9 +55,9 @@ const deletData=(id)=>{
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto px-5 py-5'>
           {
          data?.length === 0 ? 'loading..'  :( data?.map(p=> (
-                <div key={p.id}>
+                <div key={p._id}>
                     <div className="card card-compact max-w-full lg:max-w-lg h-full bg-base-100 shadow-xl">
-  <figure><img src={p?.thumbnail} alt="Shoes" className='h-[214px]' /></figure>
+  <figure><img src={p?.image} alt="Shoes" className='h-[214px]' /></figure>
   <div className="card-body">
     <div className='flex justify-between'>
         <div>
@@ -63,12 +65,12 @@ const deletData=(id)=>{
    <div className='flex'>
     <div className="rating rating-sm">
   <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
   <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
   <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
   <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
   
-</div><p className='px-2 text-orange-500'>{p?.rating}</p> </div>
+</div><p className='px-2 text-orange-500'>{p?.rating.rate}</p> </div>
         </div>
 
 <button className="btn  btn-sm "  onClick={()=>openModal(p)}>
@@ -89,30 +91,32 @@ const deletData=(id)=>{
           </div>
 
    {/* modal      */}
-{product ? (<dialog id="my_modal_1" className="modal  bg-[#34405454] backdrop-blur-lg">
+{allproduct ? (<dialog id="my_modal_1" className="modal  bg-[#34405454] backdrop-blur-lg">
   <div className="modal-box">
     <form method="dialog">
       <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
     </form>
     <h3 className="font-bold text-lg">Delete product</h3>
-    <p className="py-4">Are you sure you want to delete "<span>{product.title}</span>"  from your lists?</p>
+    <p className="py-4">Are you sure you want to delete "<span>{allproduct?.title}</span>"  from your lists?</p>
     <div className='text-center '>
 <button className='btn btn-outline text-red-400  mx-3 px-14' onClick={handleCloseModal}>Close</button>
-<button className='btn btn-error text-white  px-14 ' onClick={()=>deletData(product.id)} >Delete</button>
+<button className='btn btn-error text-white  px-14 ' onClick={()=>deletData(allproduct._id)} >Delete</button>
     </div>
   </div>
 </dialog>):   
-(<dialog id="my_modal_3" className="modal  bg-[#344054B2] bg-opacity-20 backdrop-blur-lg">
-<div className="modal-box">
-  <form method="dialog">
-    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-  </form>
- 
-  <div>
-  <button className='btn btn-outline text-red-400  mx-3 px-14' onClick={handleCloseModal}>Close</button>
+<dialog id="my_modal_1" className="modal  bg-[#34405454] backdrop-blur-lg">
+  <div className="modal-box">
+    <form method="dialog">
+      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 className="font-bold text-lg">Delete product</h3>
+    <p className="py-4">Are you sure you want to delete "<span>{allproduct?.title}</span>"  from your lists?</p>
+    <div className='text-center '>
+<button className='btn btn-outline text-red-400  mx-3 px-14' onClick={handleCloseModal}>Close</button>
+<button className='btn btn-error text-white  px-14 ' onClick={()=>deletData(allproduct?._id)} >Delete</button>
+    </div>
   </div>
-</div>
-</dialog>)
+</dialog>
 }
         </div>
     );
