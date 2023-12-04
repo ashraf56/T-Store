@@ -13,7 +13,7 @@ const PostForm = () => {
         formState: { errors },
       } = useForm()
       
-    
+    let img='https://static.vecteezy.com/system/resources/thumbnails/017/054/078/small/headphones-design-3d-rendering-for-product-mockup-free-png.png'
     
       const onSubmit = (data) =>{
         
@@ -27,7 +27,7 @@ const PostForm = () => {
                 title: data.title,
                 price: data.price,
                 description: data.description,
-                image: 'https://img.freepik.com/free-psd/wood-podium-stage-display-mockup-product-presentation-decorated-with-tropical-palm-leaves_103373-1885.jpg?w=740&t=st=1701615179~exp=1701615779~hmac=d975f815a17df9402d488895cb07fae0323fa32d5e1f324ba395b04624f83fd7',
+                image: img,
                 category: 'electronic',
                 rating:{rate:3.9,count:100}
             }
@@ -112,7 +112,7 @@ const PostForm = () => {
                 <div className='max-w-lg '>
                 <div className="card lg:card-side ">
 <div className='card shadow-md items-center justify-center'>
-<figure><img src="https://static.vecteezy.com/system/resources/thumbnails/017/054/078/small/headphones-design-3d-rendering-for-product-mockup-free-png.png" alt="Album"/></figure>
+<figure><img src={img}  alt="Album"/></figure>
 </div>
   <div className="card-body h-full shadow-md">
 
