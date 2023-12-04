@@ -7,7 +7,7 @@ const Product = () => {
     const {data, refetch } = useQuery(
         ['products'],
          async() => { 
-          const res = await axios.get('http://localhost:4000/product')
+          const res = await axios.get('https://public-server.vercel.app/product')
           
           return  res.data;
       }
@@ -33,7 +33,7 @@ let [allproduct,setAllroduct]=useState(null)
       };
 
 const deletData=(id)=>{
-  fetch(`http://localhost:4000/product/${id}`,{
+  fetch(`https://public-server.vercel.app/product/${id}`,{
     method:"DELETE"
 })
     .then(res=>res.json())
@@ -88,6 +88,7 @@ const deletData=(id)=>{
                 </div>
             ))) 
            }
+
           </div>
 
    {/* modal      */}

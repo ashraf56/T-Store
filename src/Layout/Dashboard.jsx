@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import {  NavLink, Outlet } from 'react-router-dom';
 import img from '../assets/icons8-question-mark-64.png'
 import { GoStack } from "react-icons/go";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -8,6 +8,7 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { GiUbisoftSun } from "react-icons/gi";
 
 const Dashboard = () => {
+
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -25,21 +26,21 @@ const Dashboard = () => {
    <h1 className=' text-[#1570EF] font-mono font-bold text-center pt-5 flex items-center justify-center '><GiUbisoftSun />  <span className='px-2 text-xl '>Tajdid Store </span></h1>
 </div>
 
-    <div className='grid grid-cols-1  gap-0 pt-5 text-sm font-semibold  '>
-    <span className='  hover:bg-[#EFF8FF] border-s-4 border-[#EFF8FF] hover:border-s-4  hover:border-[#1570EF] p-3 '>
-    <Link to={'/'} className='flex items-center'> <GoStack /> <span className='px-2'>Products</span></Link>
+    <div className='grid grid-cols-1   gap-0 pt-5 text-sm font-semibold  '>
+    <span  className='  hover:bg-[#EFF8FF] border-s-4 border-[#EFF8FF] hover:border-s-4  hover:border-[#1570EF] p-3 '>
+    <NavLink to={'/'}  className='flex items-center '> <GoStack /> <span className='px-2 ac'>Products</span></NavLink>
     </span>
     <span className='  hover:bg-[#EFF8FF] border-s-4 hover:border-s-4 border-[#EFF8FF] hover:border-[#0059CF] p-3 '>
-    <Link to={'/'} className='flex items-center'> <IoStatsChartOutline /> <span className='px-2'>Analytics</span></Link>
+    <NavLink className='flex items-center'> <IoStatsChartOutline /> <span className='px-2'>Analytics</span></NavLink>
     </span>
     <span className='hover:bg-[#EFF8FF] border-s-4 hover:border-s-4 border-[#EFF8FF] hover:border-[#1570EF] p-3 '>
-    <Link to={'/'} className='flex items-center'> <GoStack /> <span className='px-2'>Billing</span></Link>
+    <NavLink  className='flex items-center'> <GoStack /> <span className='px-2'>Billing</span></NavLink>
     </span>
     <span className=' hover:bg-[#EFF8FF] border-s-4 hover:border-s-4 border-[#EFF8FF] hover:border-[#1570EF] p-3  '>
-    <Link to={'/'} className='flex items-center'> <RiMoneyDollarCircleFill /> <span className='px-2'>Products</span></Link>
+    <NavLink className='flex items-center'> <RiMoneyDollarCircleFill /> <span className='px-2'>Products</span></NavLink>
     </span>
     <span className=' hover:bg-[#EFF8FF] border-s-4 hover:border-s-4 border-[#EFF8FF] hover:border-[#1570EF] p-3 '>
-    <Link to={'/'} className='flex items-center'> <IoLogOutOutline /><span className='px-2'>Log out</span></Link>
+    <NavLink className='flex items-center' > <IoLogOutOutline /><span className='px-2'>Log out</span></NavLink>
     </span>
    
     </div>

@@ -19,7 +19,7 @@ const PostForm = () => {
         
        
     
-        fetch('http://localhost:4000/product', {
+        fetch('https://public-server.vercel.app/product', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(
@@ -77,7 +77,12 @@ const PostForm = () => {
                 <h1 className='font-semibold '>Title</h1>
                 </div>
                 <div className='w-full'>
-                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xl " {...register('title')} />
+                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xl " {...register('title',{required: "Title is required"})} />
+                    {
+                  errors.title && (
+                    <p className='text-xs pt-2 text-red-800'>{errors.title.message}</p>
+                  )
+                }
                 </div>
                 
             </div>
@@ -88,10 +93,14 @@ const PostForm = () => {
                 <h1 className='font-semibold '>Price</h1>
                 </div>
                 <div className='w-full block'>
-                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xl " {...register('price')} />
-                    
+                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xl " {...register('price', {required:'enter price'})} />
+                      {
+                  errors.price && (
+                    <p className='text-xs pt-2 text-red-800'>{errors.price.message}</p>
+                  )
+                }
                 </div>
-                
+              
             </div>
             <hr />
          
@@ -127,13 +136,16 @@ const PostForm = () => {
                 <p className='text-xs'>Write a short introduction.</p>
                 </div>
                 <div className='w-full'>
-                <textarea placeholder="Write something about your products..." className="textarea textarea-bordered  w-full max-w-xl h-32" {...register('description')} ></textarea>
+                <textarea placeholder="Write something about your products..." className="textarea textarea-bordered  w-full max-w-xl h-32" {...register('description',{required:'Write something here'})} ></textarea>
                 <p className='text-xs label-text'>275 characters left</p>
+              {errors.description && (
+                <p className='text-xs text-red-800'>{errors.description.message}</p>
+              )}
                 </div>
                 
             </div>
             <hr />
-         
+          
            
         </form>
     );
